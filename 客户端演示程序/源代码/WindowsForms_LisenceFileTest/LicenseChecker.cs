@@ -67,8 +67,8 @@ public class LicenseChecker
         string sign = items[1];
         string publicKeyXml = items[2];
 
-        var fileVersionNo = MD5Helper.GetMD5HashString(publicKeyXml);
-        if (fileVersionNo.Equals(this.VersionNo))
+        var fileVersionNo = MD5Helper.GetMD5HashString(publicKeyXml).Substring(0,6);
+        if (fileVersionNo.Equals(this.VersionNo) == false)
         {
             message = "版本识别号有误";
             return false;
