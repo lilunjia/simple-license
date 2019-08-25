@@ -29,7 +29,7 @@ foreach (ManagementObject mo in moc2)
 {
 	if ((bool)mo["IPEnabled"] == true)
 	{	
-		txtContent.Text += mo["MacAddress"].ToString();
+		MacAddress = mo["MacAddress"].ToString();
 	}
 }
 ```
