@@ -5,8 +5,7 @@ using System.Security.Cryptography;
 using System.Web;
 using System.Management;
 using System.Management.Instrumentation;
-
-
+using WindowsForms_LisenceFileTest;
 
 /// <summary>
 /// 授权文件校验
@@ -21,7 +20,7 @@ public class LicenseChecker
     public string VersionNo
     {
         get
-        {
+        {   
             return "11678e";
         }
     }
@@ -40,7 +39,7 @@ public class LicenseChecker
             break;
         }
 
-        return MD5Helper.GetMD5HashString(strHardDiskID);
+        return MD5Helper.GetMD5HashString(strHardDiskID,8);
     }
 
 
@@ -87,6 +86,8 @@ public class LicenseChecker
         if (af.Check(this.GetMachineCode()) == false)
         {   
             message = "应用授权失败，当前授权类型为：" + af.AuthorizeType;
+
+            System.IO.File.Delete(filePath);
 
             return false;
         }
